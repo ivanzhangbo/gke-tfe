@@ -3,13 +3,13 @@
 
 project_id             = "your-gcp-project-id"
 region                 = "your-gcp-region"
-network                = "your-vpc-network-name"
-subnetwork             = "your-vpc-subnetwork-name"
-ip_range_pods_name     = "your-pods-ip-range-name"
-ip_range_services_name = "your-services-ip-range-name"
-private_endpoint_subnetwork = "your-private-endpoint-subnetwork"
-min_master_version            = "1.28" # Specify your desired master version
-node_version                  = "1.28" # Specify your desired node version
+network                = "default"
+subnetwork             = "gke-subnet"
+ip_range_pods_name     = "pod-range"
+ip_range_services_name = "svc-range"
+private_endpoint_subnetwork = "master-subnet"
+min_master_version            = "1.33" # Specify your desired master version
+node_version                  = "1.33" # Specify your desired node version
 
 node_pools = {
   "default-pool" = {
