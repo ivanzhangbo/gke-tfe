@@ -10,7 +10,6 @@ module "gke" {
   ip_range_services_name      = var.ip_range_services_name
   private_endpoint_subnetwork = var.private_endpoint_subnetwork
   min_master_version          = var.min_master_version
-  node_version                = var.node_version
 }
 
 module "gke_node_pools" {

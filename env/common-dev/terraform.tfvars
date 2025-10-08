@@ -1,8 +1,8 @@
 # Example values for the dev environment
 # Replace with your actual values
 
-project_id             = "your-gcp-project-id"
-region                 = "your-gcp-region"
+project_id             = "qwiklabs-gcp-01-dc372e9d5259"
+region                 = "europe-west4"
 network                = "default"
 subnetwork             = "gke-subnet"
 ip_range_pods_name     = "pod-range"
@@ -15,8 +15,8 @@ node_pools = {
   "default-pool" = {
     machine_type      = "e2-medium"
     node_count        = 3
-    disk_size_gb      = 100
-    service_account   = "your-service-account@your-project-id.iam.gserviceaccount.com" # Specify your Service Account
-    boot_disk_kms_key = "your-boot-disk-kms-key"                                         # Specify your Boot Disk KMS key
+    disk_size_gb      = 30
+    service_account   = "gke-sa@qwiklabs-gcp-01-dc372e9d5259.iam.gserviceaccount.com" # Specify your Service Account
+    boot_disk_kms_key = "projects/qwiklabs-gcp-01-dc372e9d5259/locations/europe-west4/keyRings/gke-keyring/cryptoKeys/gke-boot-key"                                         # Specify your Boot Disk KMS key
   }
 }

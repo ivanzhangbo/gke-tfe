@@ -16,8 +16,8 @@ resource "google_container_cluster" "primary" {
   # Maintenance policy
   maintenance_policy {
     recurring_window {
-      start_time = "2025-01-05T16:00:00Z"
-      end_time   = "2025-01-05T18:00:00Z"
+      start_time = "2025-10-12T10:00:00Z"
+      end_time   = "2025-10-12T22:00:00Z"
       recurrence = "FREQ=WEEKLY;BYDAY=SU"
     }
   }
