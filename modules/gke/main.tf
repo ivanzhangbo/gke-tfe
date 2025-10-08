@@ -5,15 +5,28 @@ resource "google_container_cluster" "primary" {
   network    = var.network
   subnetwork = var.subnetwork
 
+  # Versions
+  min_master_version = var.min_master_version
+  node_version       = var.node_version
+
   # Remove the default node pool so we can manage them separately
   remove_default_node_pool = true
   initial_node_count       = 1
 
+  # Maintenance policy
+  maintenance_policy {
+    recurring_window {
+      start_time = "2025-01-05T02:00:00Z" # Sunday 2am
+      end_time   = "2025-01-05T05:00:00Z" # Sunday 5am
+      recurrence = "FREQ=WEEKLY;BYDAY=SU"
+    }
+  }
+
   # Configuration for a private cluster
   private_cluster_config {
-    enable_private_nodes    = true
-    enable_private_endpoint = true
-    master_ipv4_cidr_block  = "172.16.0.0/28"
+    enable_private_nodes        = true
+    enable_private_endpoint     = true
+    private_endpoint_subnetwork = var.private_endpoint_subnetwork
   }
 
   # IP allocation for pods and services

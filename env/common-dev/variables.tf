@@ -37,9 +37,29 @@ variable "ip_range_services_name" {
 variable "node_pools" {
   description = "A map of node pools to create. The key is the node pool name."
   type = map(object({
-    machine_type = string
-    node_count   = number
-    disk_size_gb = number
+    machine_type      = string
+    node_count        = number
+    disk_size_gb      = number
+    service_account   = string
+    boot_disk_kms_key = string
   }))
   default = {}
+}
+
+variable "private_endpoint_subnetwork" {
+  description = "The subnetwork for the private endpoint"
+  type        = string
+  default     = ""
+}
+
+variable "min_master_version" {
+  description = "The minimum master version for the GKE cluster"
+  type        = string
+  default     = null
+}
+
+variable "node_version" {
+  description = "The node version for the GKE cluster"
+  type        = string
+  default     = null
 }

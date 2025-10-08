@@ -6,8 +6,10 @@ resource "google_container_node_pool" "pool" {
   node_count = var.node_count
 
   node_config {
-    machine_type = var.machine_type
-    disk_size_gb = var.disk_size_gb
+    machine_type      = var.machine_type
+    disk_size_gb      = var.disk_size_gb
+    service_account   = var.service_account
+    boot_disk_kms_key = var.boot_disk_kms_key
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]

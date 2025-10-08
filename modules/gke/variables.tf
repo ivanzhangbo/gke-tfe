@@ -33,3 +33,20 @@ variable "ip_range_services_name" {
   description = "The name of the secondary subnet ip range for services"
   type        = string
 }
+
+variable "private_endpoint_subnetwork" {
+  description = "The subnetwork for the private endpoint"
+  type        = string
+}
+
+variable "min_master_version" {
+  description = "The minimum master version for the GKE cluster"
+  type        = string
+  default     = null
+}
+
+variable "node_version" {
+  description = "The node version for the GKE cluster"
+  type        = string
+  default     = null
+}

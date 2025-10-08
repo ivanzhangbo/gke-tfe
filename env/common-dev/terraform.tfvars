@@ -7,17 +7,16 @@ network                = "your-vpc-network-name"
 subnetwork             = "your-vpc-subnetwork-name"
 ip_range_pods_name     = "your-pods-ip-range-name"
 ip_range_services_name = "your-services-ip-range-name"
+private_endpoint_subnetwork = "your-private-endpoint-subnetwork"
+min_master_version            = "1.28" # Specify your desired master version
+node_version                  = "1.28" # Specify your desired node version
 
 node_pools = {
   "default-pool" = {
-    machine_type = "e2-medium"
-    node_count   = 2
-    disk_size_gb = 100
+    machine_type      = "e2-medium"
+    node_count        = 3
+    disk_size_gb      = 100
+    service_account   = "your-service-account@your-project-id.iam.gserviceaccount.com" # Specify your Service Account
+    boot_disk_kms_key = "your-boot-disk-kms-key"                                         # Specify your Boot Disk KMS key
   }
-  # You can add more node pools here
-  # "another-pool" = {
-  #   machine_type = "n2-standard-2"
-  #   node_count   = 1
-  #   disk_size_gb = 50
-  # }
 }

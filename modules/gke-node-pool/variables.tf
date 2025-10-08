@@ -35,3 +35,15 @@ variable "disk_size_gb" {
   type        = number
   default     = 100
 }
+
+variable "service_account" {
+  description = "The service account to be used by the nodes."
+  type        = string
+  default     = null
+}
+
+variable "boot_disk_kms_key" {
+  description = "The KMS key for the node pool's boot disks."
+  type        = string
+  default     = null
+}
