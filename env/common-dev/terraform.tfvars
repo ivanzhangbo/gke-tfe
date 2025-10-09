@@ -12,9 +12,9 @@ min_master_version            = "1.33" # Specify your desired master version
 node_version                  = "1.33" # Specify your desired node version
 
 node_pools = {
-  "default-pool" = {
+  "comm-dev-node-pool" = {
     machine_type      = "e2-medium"
-    node_count        = 3
+    node_count        = 2
     disk_size_gb      = 30
     service_account   = "gke-sa@qwiklabs-gcp-01-dc372e9d5259.iam.gserviceaccount.com" # Specify your Service Account
     boot_disk_kms_key = "projects/qwiklabs-gcp-01-dc372e9d5259/locations/europe-west4/keyRings/gke-keyring/cryptoKeys/gke-boot-key"                                         # Specify your Boot Disk KMS key
