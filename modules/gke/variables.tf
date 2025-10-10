@@ -50,3 +50,18 @@ variable "node_version" {
   type        = string
   default     = null
 }
+
+variable "service_account_id" {
+  description = "The ID of the service account to create"
+  type        = string
+}
+
+variable "kms_keyring_name" {
+  description = "The name of the KMS keyring to create"
+  type        = string
+}
+
+variable "kms_key_name" {
+  description = "The name of the KMS key to create"
+  type        = string
+}

@@ -1,3 +1,3 @@
 terraform {
-  backend "gcs" {bucket  = "tfe-be99"}
+  backend "gcs" { bucket = "tfe-be99" }
 }

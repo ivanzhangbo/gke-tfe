@@ -37,11 +37,9 @@ variable "ip_range_services_name" {
 variable "node_pools" {
   description = "A map of node pools to create. The key is the node pool name."
   type = map(object({
-    machine_type      = string
-    node_count        = number
-    disk_size_gb      = number
-    service_account   = string
-    boot_disk_kms_key = string
+    machine_type = string
+    node_count   = number
+    disk_size_gb = number
   }))
   default = {}
 }
@@ -62,4 +60,19 @@ variable "node_version" {
   description = "The node version for the GKE cluster"
   type        = string
   default     = null
+}
+
+variable "service_account_id" {
+  description = "The ID of the service account to create"
+  type        = string
+}
+
+variable "kms_keyring_name" {
+  description = "The name of the KMS keyring to create"
+  type        = string
+}
+
+variable "kms_key_name" {
+  description = "The name of the KMS key to create"
+  type        = string
 }

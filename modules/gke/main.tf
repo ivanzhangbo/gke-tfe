@@ -47,8 +47,40 @@ resource "google_container_cluster" "primary" {
   release_channel {
     channel = "REGULAR"
   }
-
   lifecycle {
     ignore_changes = [node_pool]
   }
 }
+
+# GKE Service Account
+resource "google_service_account" "gke_sa" {
+  project = var.project_id
+  account_id = var.service_account_id
+  display_name = "GKE Service Account"
+}
+
+# KMS KeyRing
+resource "google_kms_key_ring" "gke_keyring" {
+  project = var.project_id
+  name = var.kms_keyring_name
+  location = var.region
+}
+
+# KMS CryptoKey
+resource "google_kms_crypto_key" "gke_boot_key" {
+  name = var.kms_key_name
+  key_ring = google_kms_key_ring.gke_keyring.id
+  rotation_period = "100000s"
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+# Grant the service account permission to use the KMS key
+resource "google_kms_crypto_key_iam_member" "gke_boot_key_user" {
+  crypto_key_id = google_kms_crypto_key.gke_boot_key.id
+  role = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+  member = "serviceAccount:${google_service_account.gke_sa.email}"
+}
+
+  

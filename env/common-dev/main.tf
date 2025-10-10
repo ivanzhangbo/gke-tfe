@@ -10,10 +10,14 @@ module "gke" {
   ip_range_services_name      = var.ip_range_services_name
   private_endpoint_subnetwork = var.private_endpoint_subnetwork
   min_master_version          = var.min_master_version
+  node_version                = var.node_version
+  service_account_id          = var.service_account_id
+  kms_keyring_name            = var.kms_keyring_name
+  kms_key_name                = var.kms_key_name
 }
 
 module "gke_node_pools" {
-  source = "../../modules/gke-node-pool"
+  source   = "../../modules/gke-node-pool"
   for_each = var.node_pools
 
   project_id        = var.project_id
@@ -23,6 +27,6 @@ module "gke_node_pools" {
   machine_type      = each.value.machine_type
   node_count        = each.value.node_count
   disk_size_gb      = each.value.disk_size_gb
-  service_account   = each.value.service_account
-  boot_disk_kms_key = each.value.boot_disk_kms_key
+  service_account   = module.gke.service_account
+  boot_disk_kms_key = module.gke.boot_disk_kms_key
 }
